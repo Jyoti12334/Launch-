@@ -14,14 +14,10 @@
       --cyan: #5cf7ff;
       --gold: #ffd779;
       --text: #fff;
-      --ease: cubic-bezier(.76, 0, .18, 1);
+      --ease: cubic-bezier(.22, 1, .36, 1);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body {
       width: 100%;
@@ -33,11 +29,7 @@
     }
 
     button { font: inherit; }
-
-    button:focus-visible {
-      outline: 3px solid white;
-      outline-offset: 4px;
-    }
+    button:focus-visible { outline: 3px solid white; outline-offset: 4px; }
 
     .stage {
       position: relative;
@@ -47,11 +39,10 @@
       height: 100dvh;
       min-height: 350px;
       overflow: hidden;
-      background:
-        radial-gradient(ellipse at 50% 45%, #29164e 0%, #100a25 48%, #05040b 100%);
+      background: radial-gradient(ellipse at 50% 45%, #29164e 0%, #100a25 48%, #05040b 100%);
     }
 
-    /* ===== ANIMATED BACKGROUND ===== */
+    /* ANIMATED BACKGROUND */
 
     .background {
       position: absolute;
@@ -68,16 +59,7 @@
       top: 48%;
       border-radius: 50%;
       transform: translate(-50%, -50%);
-      background: conic-gradient(
-        from 0deg,
-        transparent,
-        #ff3e9d20,
-        transparent,
-        #5cf7ff25,
-        transparent,
-        #ffd77915,
-        transparent
-      );
+      background: conic-gradient(from 0deg, transparent, #ff3e9d20, transparent, #5cf7ff25, transparent, #ffd77915, transparent);
       animation: ambientRotate 30s linear infinite;
     }
 
@@ -85,9 +67,7 @@
       position: absolute;
       inset: -20%;
       opacity: .26;
-      background-image:
-        linear-gradient(#5cf7ff1c 1px, transparent 1px),
-        linear-gradient(90deg, #5cf7ff1c 1px, transparent 1px);
+      background-image: linear-gradient(#5cf7ff1c 1px, transparent 1px), linear-gradient(90deg, #5cf7ff1c 1px, transparent 1px);
       background-size: 44px 44px;
       transform: perspective(650px) rotateX(58deg) scale(1.5);
       transform-origin: center bottom;
@@ -131,8 +111,7 @@
       box-shadow: inset 0 0 80px #5cf7ff08;
     }
 
-    .orbit::before,
-    .orbit::after {
+    .orbit::before, .orbit::after {
       content: "";
       position: absolute;
       inset: 9%;
@@ -155,7 +134,7 @@
       pointer-events: none;
     }
 
-    /* ===== HOLOGRAPHIC OBJECTS ===== */
+    /* HOLOGRAPHIC OBJECTS */
 
     .holo-scene {
       position: absolute;
@@ -205,15 +184,8 @@
       transform-style: preserve-3d;
     }
 
-    .object-left {
-      left: 12%;
-      animation: floatLeft 6s ease-in-out infinite;
-    }
-
-    .object-right {
-      right: 12%;
-      animation: floatRight 7s ease-in-out infinite;
-    }
+    .object-left { left: 12%; animation: floatLeft 6s ease-in-out infinite; }
+    .object-right { right: 12%; animation: floatRight 7s ease-in-out infinite; }
 
     .cube {
       position: relative;
@@ -256,11 +228,7 @@
       box-shadow: 0 0 14px var(--cyan), 0 0 32px #5cf7ff77;
     }
 
-    .orb-one {
-      left: 24%;
-      top: 27%;
-      animation: driftOne 8s ease-in-out infinite;
-    }
+    .orb-one { left: 24%; top: 27%; animation: driftOne 8s ease-in-out infinite; }
 
     .orb-two {
       right: 24%;
@@ -280,7 +248,7 @@
       animation: driftOne 9s ease-in-out infinite reverse;
     }
 
-    /* ===== MAIN BANNER ===== */
+    /* MAIN BANNER */
 
     .content {
       position: absolute;
@@ -291,11 +259,16 @@
       justify-content: center;
       padding: clamp(18px, 5vw, 70px);
       opacity: 0;
-      transform: translateY(28px) scale(.93);
+      transform: translateY(35px) scale(.94);
       transition:
-        opacity 1s ease,
-        transform 1.1s cubic-bezier(.2, .8, .2, 1);
+        opacity 2s var(--ease),
+        transform 2.4s var(--ease);
+      transition-delay: .45s;
       pointer-events: none;
+    }
+
+    .stage:not(.revealed) .content {
+      transition-delay: 0s;
     }
 
     .stage.revealed .content {
@@ -317,10 +290,7 @@
       background:
         radial-gradient(ellipse at 50% 0%, #ff3e9d13, transparent 52%),
         linear-gradient(135deg, #110c28ee, #151027e8 55%, #081c2bed);
-      box-shadow:
-        inset 0 0 0 1px #ff3e9d12,
-        0 25px 90px #000b,
-        0 0 70px #5cf7ff19;
+      box-shadow: inset 0 0 0 1px #ff3e9d12, 0 25px 90px #000b, 0 0 70px #5cf7ff19;
       backdrop-filter: blur(14px);
     }
 
@@ -339,13 +309,7 @@
       position: absolute;
       z-index: -1;
       inset: -50% -40%;
-      background: linear-gradient(
-        110deg,
-        transparent 40%,
-        #ffffff05 47%,
-        #ffffff18 50%,
-        transparent 58%
-      );
+      background: linear-gradient(110deg, transparent 40%, #ffffff05 47%, #ffffff18 50%, transparent 58%);
       transform: translateX(-80%);
       animation: shine 7s ease-in-out infinite;
       pointer-events: none;
@@ -359,33 +323,10 @@
       opacity: .85;
     }
 
-    .tl {
-      top: 12px;
-      left: 12px;
-      border-top: 2px solid;
-      border-left: 2px solid;
-    }
-
-    .tr {
-      top: 12px;
-      right: 12px;
-      border-top: 2px solid;
-      border-right: 2px solid;
-    }
-
-    .bl {
-      bottom: 12px;
-      left: 12px;
-      border-bottom: 2px solid;
-      border-left: 2px solid;
-    }
-
-    .br {
-      bottom: 12px;
-      right: 12px;
-      border-bottom: 2px solid;
-      border-right: 2px solid;
-    }
+    .tl { top: 12px; left: 12px; border-top: 2px solid; border-left: 2px solid; }
+    .tr { top: 12px; right: 12px; border-top: 2px solid; border-right: 2px solid; }
+    .bl { bottom: 12px; left: 12px; border-bottom: 2px solid; border-left: 2px solid; }
+    .br { bottom: 12px; right: 12px; border-bottom: 2px solid; border-right: 2px solid; }
 
     .eyebrow {
       display: flex;
@@ -418,14 +359,7 @@
       letter-spacing: -.075em;
       text-transform: uppercase;
       color: transparent;
-      background: linear-gradient(
-        100deg,
-        #fff 2%,
-        #9ffaff 25%,
-        #fff 39%,
-        #ff75bc 65%,
-        #ffd779 90%
-      );
+      background: linear-gradient(100deg, #fff 2%, #9ffaff 25%, #fff 39%, #ff75bc 65%, #ffd779 90%);
       background-size: 220% auto;
       background-clip: text;
       -webkit-background-clip: text;
@@ -518,7 +452,7 @@
       box-shadow: 0 0 38px #5cf7ff66;
     }
 
-    /* ===== VELVET CURTAINS ===== */
+    /* VELVET CURTAINS */
 
     .curtain {
       position: absolute;
@@ -531,37 +465,19 @@
       will-change: transform;
     }
 
-    .curtain.left {
-      left: 0;
-      transform-origin: left center;
-    }
-
-    .curtain.right {
-      right: 0;
-      transform-origin: right center;
-    }
+    .curtain.left { left: 0; transform-origin: left center; }
+    .curtain.right { right: 0; transform-origin: right center; }
 
     .curtain-inner {
       position: absolute;
       inset: -1%;
-      background:
-        repeating-linear-gradient(
-          90deg,
-          #210316 0%,
-          #610925 5%,
-          #a11540 10%,
-          #4a0822 15%,
-          #260318 20%,
-          #780d32 25%,
-          #31051e 31%,
-          #8d1038 36%,
-          #270318 42%,
-          #650a2a 48%,
-          #200317 53%
-        );
-      box-shadow:
-        inset -20px 0 30px #0009,
-        inset 10px 0 25px #ff7c9d22;
+      background: repeating-linear-gradient(
+        90deg,
+        #210316 0%, #610925 5%, #a11540 10%, #4a0822 15%,
+        #260318 20%, #780d32 25%, #31051e 31%, #8d1038 36%,
+        #270318 42%, #650a2a 48%, #200317 53%
+      );
+      box-shadow: inset -20px 0 30px #0009, inset 10px 0 25px #ff7c9d22;
       animation: fabricWave 6s ease-in-out infinite;
     }
 
@@ -574,10 +490,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        linear-gradient(90deg, #0009, transparent 10%, #ffb0c51c 17%,
-        transparent 24%, #0007 32%, transparent 44%, #ffb0c51c 53%,
-        #0009 66%, transparent 78%, #0009);
+      background: linear-gradient(90deg, #0009, transparent 10%, #ffb0c51c 17%, transparent 24%, #0007 32%, transparent 44%, #ffb0c51c 53%, #0009 66%, transparent 78%, #0009);
       animation: lightSweep 8s ease-in-out infinite;
     }
 
@@ -612,25 +525,15 @@
       text-transform: uppercase;
     }
 
-    /* Narrow gathered curtain strips remain visible after opening. */
-
     .curtain-gather {
       position: absolute;
       inset: 0 auto 0 0;
       width: 100%;
-      background:
-        repeating-linear-gradient(
-          90deg,
-          #200315 0%,
-          #650925 10%,
-          #a51845 20%,
-          #38051e 32%,
-          #790d34 43%,
-          #210316 55%,
-          #8c103b 68%,
-          #260318 80%,
-          #620926 92%
-        );
+      background: repeating-linear-gradient(
+        90deg, #200315 0%, #650925 10%, #a51845 20%,
+        #38051e 32%, #790d34 43%, #210316 55%,
+        #8c103b 68%, #260318 80%, #620926 92%
+      );
       box-shadow: inset 0 0 30px #000b, 0 0 28px #0009;
       animation: gatheredBreeze 5s ease-in-out infinite;
       transform-origin: center;
@@ -662,15 +565,15 @@
 
     .stage.revealed .curtain.left {
       transform: translateX(-77%);
-      transition: transform 1.9s var(--ease);
+      transition: transform 2.8s cubic-bezier(.22, 1, .36, 1);
     }
 
     .stage.revealed .curtain.right {
       transform: translateX(77%);
-      transition: transform 1.9s var(--ease);
+      transition: transform 2.8s cubic-bezier(.22, 1, .36, 1);
     }
 
-    /* These remain in place while the main curtain panels move away. */
+    /* PERMANENT GATHERED VELVET EDGES */
 
     .curtain-side {
       position: absolute;
@@ -679,16 +582,10 @@
       width: clamp(13px, 3.5vw, 40px);
       pointer-events: none;
       opacity: 0;
-      background:
-        repeating-linear-gradient(
-          90deg,
-          #220315 0%,
-          #7a0b31 20%,
-          #a51845 42%,
-          #35051e 66%,
-          #620926 85%,
-          #200315 100%
-        );
+      background: repeating-linear-gradient(
+        90deg, #220315 0%, #7a0b31 20%, #a51845 42%,
+        #35051e 66%, #620926 85%, #200315 100%
+      );
       box-shadow: inset -7px 0 15px #0009, 5px 0 25px #ff3e9d18;
       transition: opacity .7s ease 1s;
       animation: sideCurtainBreeze 4.5s ease-in-out infinite;
@@ -712,11 +609,9 @@
       animation-delay: -2.3s;
     }
 
-    .stage.revealed .curtain-side {
-      opacity: 1;
-    }
+    .stage.revealed .curtain-side { opacity: 1; }
 
-    /* ===== INTRO AND DRAG HANDLE ===== */
+    /* INTRO */
 
     .intro-title {
       position: absolute;
@@ -727,7 +622,7 @@
       transform: translate(-50%, -50%);
       text-align: center;
       pointer-events: none;
-      transition: opacity .45s ease;
+      transition: opacity .8s ease;
     }
 
     .intro-title strong {
@@ -746,9 +641,7 @@
       text-transform: uppercase;
     }
 
-    .stage.revealed .intro-title {
-      opacity: 0;
-    }
+    .stage.revealed .intro-title { opacity: 0; }
 
     .target {
       position: absolute;
@@ -763,7 +656,7 @@
       border: 1px dashed #ffd779cc;
       border-radius: 50%;
       color: var(--gold);
-      transition: opacity .3s;
+      transition: opacity .5s;
     }
 
     .target::before {
@@ -776,10 +669,7 @@
     }
 
     .target span { font-size: 1.2rem; }
-
-    .stage.revealed .target {
-      opacity: 0;
-    }
+    .stage.revealed .target { opacity: 0; }
 
     .handle-zone {
       position: absolute;
@@ -792,7 +682,7 @@
       align-items: center;
       gap: 9px;
       touch-action: none;
-      transition: opacity .4s, transform .4s;
+      transition: opacity .7s ease, transform .7s var(--ease);
     }
 
     .drag-hint {
@@ -834,7 +724,7 @@
       pointer-events: none;
     }
 
-    /* ===== CONTROLS ===== */
+    /* CONTROLS */
 
     .top-actions {
       position: absolute;
@@ -846,7 +736,7 @@
       justify-content: flex-end;
       gap: 8px;
       opacity: 0;
-      transition: opacity .5s 1s;
+      transition: opacity .7s 1.4s;
     }
 
     .stage.revealed .top-actions { opacity: 1; }
@@ -905,31 +795,25 @@
       transform: translate(-50%, 0);
     }
 
-    /* ===== ANIMATIONS ===== */
+    /* ANIMATIONS */
 
     @keyframes ambientRotate {
       to { transform: translate(-50%, -50%) rotate(360deg); }
     }
 
-    @keyframes orbitSpin {
-      to { transform: rotate(360deg); }
-    }
+    @keyframes orbitSpin { to { transform: rotate(360deg); } }
 
     @keyframes gridTravel {
       to { background-position: 0 44px, 44px 0; }
     }
 
-    @keyframes beamSway {
-      to { opacity: .4; }
-    }
+    @keyframes beamSway { to { opacity: .4; } }
 
     @keyframes pulse {
       50% { opacity: .45; transform: scale(.94); }
     }
 
-    @keyframes textFlow {
-      to { background-position: 220% center; }
-    }
+    @keyframes textFlow { to { background-position: 220% center; } }
 
     @keyframes shine {
       0%, 42% { transform: translateX(-80%); }
@@ -942,9 +826,7 @@
     }
 
     @keyframes handlePulse {
-      50% {
-        box-shadow: 0 0 0 10px #ffd7790d, 0 0 38px #ff3e9d9c;
-      }
+      50% { box-shadow: 0 0 0 10px #ffd7790d, 0 0 38px #ff3e9d9c; }
     }
 
     @keyframes ringOne {
@@ -992,8 +874,6 @@
       50% { translate: -30px 30px; }
     }
 
-    /* Fabric undulates continuously like it is catching a breeze. */
-
     @keyframes fabricWave {
       0%, 100% { transform: skewY(0deg) scaleX(1); }
       25% { transform: skewY(.7deg) scaleX(1.015); }
@@ -1022,7 +902,7 @@
       50% { transform: skewY(-1deg) scaleX(1.08); }
     }
 
-    /* ===== RESPONSIVE LAYOUT ===== */
+    /* RESPONSIVE LAYOUT */
 
     @media (max-width: 600px) {
       .content { padding: 12px; }
@@ -1039,10 +919,7 @@
         line-height: 1.5;
       }
 
-      .stats {
-        gap: 6px;
-        margin-top: 17px;
-      }
+      .stats { gap: 6px; margin-top: 17px; }
 
       .stat {
         flex: 1 1 0;
@@ -1065,11 +942,7 @@
       .object-left { left: 5%; }
       .object-right { right: 5%; }
 
-      .cube {
-        width: 32px;
-        height: 32px;
-      }
-
+      .cube { width: 32px; height: 32px; }
       .cube span:nth-child(1) { transform: translateZ(16px); }
       .cube span:nth-child(2) { transform: rotateY(90deg) translateZ(16px); }
       .cube span:nth-child(3) { transform: rotateY(180deg) translateZ(16px); }
@@ -1077,23 +950,23 @@
       .cube span:nth-child(5) { transform: rotateX(90deg) translateZ(16px); }
       .cube span:nth-child(6) { transform: rotateX(-90deg) translateZ(16px); }
 
-      .diamond {
-        width: 28px;
-        height: 28px;
-      }
+      .diamond { width: 28px; height: 28px; }
 
-      .control {
-        padding: 8px 10px;
-        font-size: .64rem;
-      }
-
+      .control { padding: 8px 10px; font-size: .64rem; }
       .skip { top: 12px; left: 12px; }
       .top-actions { top: 12px; right: 12px; gap: 5px; }
 
       .curtain { width: 55%; }
 
-      .stage.revealed .curtain.left { transform: translateX(-79%); }
-      .stage.revealed .curtain.right { transform: translateX(79%); }
+      .stage.revealed .curtain.left {
+        transform: translateX(-79%);
+        transition: transform 2.8s cubic-bezier(.22, 1, .36, 1);
+      }
+
+      .stage.revealed .curtain.right {
+        transform: translateX(79%);
+        transition: transform 2.8s cubic-bezier(.22, 1, .36, 1);
+      }
 
       .intro-title { top: 40%; }
     }
@@ -1122,9 +995,7 @@
       }
 
       .stats { margin-top: 9px; }
-
       .stat { padding: 5px 10px; }
-
       .stat strong { font-size: 1rem; }
       .stat span { font-size: .48rem; }
 
@@ -1156,6 +1027,7 @@
 
       .content, .curtain, .curtain-side {
         transition-duration: .25s !important;
+        transition-delay: 0s !important;
       }
     }
   </style>
@@ -1312,6 +1184,7 @@
       const leftCurtain = document.getElementById("leftCurtain");
       const rightCurtain = document.getElementById("rightCurtain");
       const toast = document.getElementById("toast");
+      const fullscreenButton = document.getElementById("fullscreen");
 
       let revealed = false;
       let dragging = false;
@@ -1320,6 +1193,12 @@
       let toastTimer;
 
       const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
+
+      /*
+       * DRAG BEHAVIOUR
+       * Curtains follow the handle during the drag.
+       * Reaching the top triggers the smooth final reveal.
+       */
 
       function setProgress(value) {
         if (revealed) return;
@@ -1333,9 +1212,14 @@
         rightCurtain.style.transform = `translateX(${shift}%)`;
         handle.style.transform = `translateY(${-progress * travel}px)`;
 
-        handle.setAttribute("aria-valuenow", String(Math.round(progress * 100)));
+        handle.setAttribute(
+          "aria-valuenow",
+          String(Math.round(progress * 100))
+        );
 
-        if (progress >= .98) reveal();
+        if (progress >= .995) {
+          reveal();
+        }
       }
 
       function reveal() {
@@ -1343,11 +1227,12 @@
 
         revealed = true;
         progress = 1;
+        dragging = false;
 
         /*
-          Clear the drag transforms before the CSS reveal animation.
-          The narrow gathered curtain edges stay visible and continue moving.
-        */
+         * Remove the temporary drag transforms.
+         * CSS takes over for the slower curtain animation.
+         */
         leftCurtain.style.transform = "";
         rightCurtain.style.transform = "";
         handle.style.transform = "";
@@ -1362,11 +1247,14 @@
         progress = 0;
 
         stage.classList.remove("revealed");
+
         leftCurtain.style.transition = "none";
         rightCurtain.style.transition = "none";
+
         leftCurtain.style.transform = "translateX(0)";
         rightCurtain.style.transform = "translateX(0)";
         handle.style.transform = "";
+
         handle.setAttribute("aria-valuenow", "0");
 
         requestAnimationFrame(() => {
@@ -1380,6 +1268,7 @@
       function showToast(message) {
         toast.textContent = message;
         toast.classList.add("show");
+
         clearTimeout(toastTimer);
 
         toastTimer = setTimeout(() => {
@@ -1401,7 +1290,9 @@
         if (!dragging) return;
 
         const travel = Math.min(window.innerHeight * .58, 420);
-        setProgress((startY - event.clientY) / travel);
+        const distance = startY - event.clientY;
+
+        setProgress(distance / travel);
       });
 
       function endDrag() {
@@ -1409,8 +1300,12 @@
 
         dragging = false;
 
-        if (progress >= .2) {
-          reveal();
+        /*
+         * Require a nearly complete upward pull.
+         * If the user releases too early, smoothly reset the curtains.
+         */
+        if (progress >= .85) {
+          setProgress(1);
         } else {
           setProgress(0);
         }
@@ -1434,7 +1329,7 @@
       document.getElementById("skip").addEventListener("click", reveal);
       document.getElementById("replay").addEventListener("click", reset);
 
-      document.getElementById("fullscreen").addEventListener("click", async () => {
+      fullscreenButton.addEventListener("click", async () => {
         try {
           if (!document.fullscreenElement) {
             await stage.requestFullscreen();
@@ -1447,15 +1342,16 @@
       });
 
       document.addEventListener("fullscreenchange", () => {
-        document.getElementById("fullscreen").textContent =
-          document.fullscreenElement ? "⛶ Exit fullscreen" : "⛶ Fullscreen";
+        fullscreenButton.textContent = document.fullscreenElement
+          ? "⛶ Exit fullscreen"
+          : "⛶ Fullscreen";
       });
 
       document.getElementById("explore").addEventListener("click", () => {
         showToast("Demo banner — registration details coming soon");
       });
 
-      /* Animated particle network */
+      /* ANIMATED PARTICLE NETWORK */
 
       const canvas = document.getElementById("particles");
       const ctx = canvas.getContext("2d");
@@ -1475,6 +1371,7 @@
 
         canvas.width = Math.round(width * dpr);
         canvas.height = Math.round(height * dpr);
+
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
         const count = Math.min(
@@ -1517,6 +1414,7 @@
               ctx.beginPath();
               ctx.moveTo(p.x, p.y);
               ctx.lineTo(q.x, q.y);
+
               ctx.strokeStyle = distance < 65 ? "#5cf7ff" : "#ff3e9d";
               ctx.globalAlpha = (1 - distance / 110) * .2;
               ctx.lineWidth = .7;
